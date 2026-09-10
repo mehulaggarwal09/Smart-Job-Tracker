@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JobTrack - Settings</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">JobTrack</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="applications.html" class="nav-item">
+                Applications
+            </a>
+
+            <a href="kanban.html" class="nav-item">
+                Kanban Board
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                Analytics
+            </a>
+
+            <a href="settings.html" class="nav-item active">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h1>Settings</h1>
+                <p>Manage your JobTrack data</p>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">
+                🌙 Dark Mode
+            </button>
+
+        </header>
+
+
+        <!-- SETTINGS CONTENT -->
+        <section class="settings-container">
+
+            <!-- DATA MANAGEMENT -->
+            <div class="settings-card">
+
+                <h2>Data Management</h2>
+
+                <p class="settings-description">
+                    Backup your job applications or restore them later.
+                </p>
+
+
+                <!-- EXPORT -->
+                <div class="settings-item">
+
+                    <div>
+                        <h3>Export Applications</h3>
+
+                        <p>
+                            Download all your job application data as a JSON file.
+                        </p>
+                    </div>
+
+                    <button id="exportBtn" class="primary-btn">
+                        Export Data
+                    </button>
+
+                </div>
+
+
+                <!-- IMPORT -->
+                <div class="settings-item">
+
+                    <div>
+                        <h3>Import Applications</h3>
+
+                        <p>
+                            Restore your applications from a previously exported JSON file.
+                        </p>
+                    </div>
+
+                    <div>
+                        <input
+                            type="file"
+                            id="importFile"
+                            accept=".json"
+                            hidden
+                        >
+
+                        <button id="importBtn" class="primary-btn">
+                            Import Data
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DANGER ZONE -->
+            <div class="settings-card danger-card">
+
+                <h2>Danger Zone</h2>
+
+                <p class="settings-description">
+                    These actions can permanently remove your application data.
+                </p>
+
+                <div class="settings-item">
+
+                    <div>
+                        <h3>Clear All Applications</h3>
+
+                        <p>
+                            Permanently delete all saved job applications.
+                        </p>
+                    </div>
+
+                    <button id="clearDataBtn" class="danger-btn">
+                        Clear Data
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/settings.js"></script>
+    <script src="js/theme.js"></script>
+
+</body>
+</html>

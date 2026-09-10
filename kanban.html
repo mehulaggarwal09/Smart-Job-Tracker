@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        JobTrack - Kanban Board
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            JobTrack
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="index.html"
+                class="nav-item">
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="applications.html"
+                class="nav-item">
+
+                Applications
+
+            </a>
+
+
+            <a
+                href="kanban.html"
+                class="nav-item active">
+
+                Kanban Board
+
+            </a>
+
+
+            <a
+                href="analytics.html"
+                class="nav-item">
+
+                Analytics
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="nav-item">
+
+                Settings
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Kanban Board
+                </h1>
+
+                <p>
+                    Track your applications by status
+                </p>
+
+            </div>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle">
+
+                🌙 Dark Mode
+
+            </button>
+
+        </header>
+
+
+
+        <!-- Kanban Board -->
+
+        <section class="kanban-board">
+
+
+            <!-- Applied -->
+
+            <div class="kanban-column">
+
+                <div class="kanban-column-header">
+
+                    <h2>
+                        Applied
+                    </h2>
+
+                    <span class="kanban-count">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="kanban-cards"
+                    data-status="Applied">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Screening -->
+
+            <div class="kanban-column">
+
+                <div class="kanban-column-header">
+
+                    <h2>
+                        Screening
+                    </h2>
+
+                    <span class="kanban-count">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="kanban-cards"
+                    data-status="Screening">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Interview -->
+
+            <div class="kanban-column">
+
+                <div class="kanban-column-header">
+
+                    <h2>
+                        Interview
+                    </h2>
+
+                    <span class="kanban-count">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="kanban-cards"
+                    data-status="Interview">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Offer -->
+
+            <div class="kanban-column">
+
+                <div class="kanban-column-header">
+
+                    <h2>
+                        Offer
+                    </h2>
+
+                    <span class="kanban-count">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="kanban-cards"
+                    data-status="Offer">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Rejected -->
+
+            <div class="kanban-column">
+
+                <div class="kanban-column-header">
+
+                    <h2>
+                        Rejected
+                    </h2>
+
+                    <span class="kanban-count">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="kanban-cards"
+                    data-status="Rejected">
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="js/kanban.js"></script>
+    <script src="js/theme.js"></script>
+
+</body>
+
+</html>

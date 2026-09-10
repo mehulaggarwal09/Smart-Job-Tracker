@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>JobTrack - Applications</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            JobTrack
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="applications.html" class="nav-item active">
+                Applications
+            </a>
+
+            <a href="kanban.html" class="nav-item">
+                Kanban Board
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                Analytics
+            </a>
+
+            <a href="settings.html" class="nav-item">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Applications
+                </h1>
+
+                <p>
+                    Manage your job applications
+                </p>
+
+            </div>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+            >
+                🌙 Dark Mode
+            </button>
+
+
+            <button
+                id="addApplicationBtn"
+                class="primary-btn"
+            >
+                + Add Application
+            </button>
+
+        </header>
+
+
+
+        <!-- Search / Filter / Sort -->
+
+        <section class="applications-toolbar">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search company or role..."
+            >
+
+
+            <select id="statusFilter">
+
+                <option value="All">
+                    All Status
+                </option>
+
+                <option value="Applied">
+                    Applied
+                </option>
+
+                <option value="Screening">
+                    Screening
+                </option>
+
+                <option value="Interview">
+                    Interview
+                </option>
+
+                <option value="Offer">
+                    Offer
+                </option>
+
+                <option value="Rejected">
+                    Rejected
+                </option>
+
+            </select>
+
+
+            <select id="sortApplications">
+
+                <option value="newest">
+                    Newest First
+                </option>
+
+                <option value="oldest">
+                    Oldest First
+                </option>
+
+                <option value="company">
+                    Company A-Z
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- Applications -->
+
+        <section
+            id="applicationsContainer"
+            class="applications-container"
+        >
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <!-- =========================
+         ADD APPLICATION MODAL
+    ========================== -->
+
+    <div
+        id="applicationModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Application
+                </h2>
+
+                <button
+                    id="closeModalBtn"
+                    class="close-btn"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+            <form id="applicationForm">
+
+
+                <div class="form-group">
+
+                    <label for="company">
+                        Company
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        placeholder="e.g. Google"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="role">
+                        Role
+                    </label>
+
+                    <input
+                        type="text"
+                        id="role"
+                        placeholder="e.g. Frontend Developer"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="e.g. Gurgaon / Remote"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="salary">
+                        Salary
+                    </label>
+
+                    <input
+                        type="text"
+                        id="salary"
+                        placeholder="e.g. 8 LPA"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select id="status">
+
+                        <option value="Applied">
+                            Applied
+                        </option>
+
+                        <option value="Screening">
+                            Screening
+                        </option>
+
+                        <option value="Interview">
+                            Interview
+                        </option>
+
+                        <option value="Offer">
+                            Offer
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="date">
+                        Application Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="followUpDate">
+                        Follow-up Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="followUpDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="jobUrl">
+                        Job URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="jobUrl"
+                        placeholder="https://example.com/job"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        rows="4"
+                        placeholder="Add notes..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Application
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         EDIT APPLICATION MODAL
+    ========================== -->
+
+    <div
+        id="editApplicationModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Edit Application
+                </h2>
+
+                <button
+                    id="closeEditModalBtn"
+                    class="close-btn"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+            <form id="editApplicationForm">
+
+                <input
+                    type="hidden"
+                    id="editApplicationId"
+                >
+
+
+                <div class="form-group">
+
+                    <label for="editCompany">
+                        Company
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCompany"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editRole">
+                        Role
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editRole"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editLocation">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editLocation"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editSalary">
+                        Salary
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editSalary"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStatus">
+                        Status
+                    </label>
+
+                    <select id="editStatus">
+
+                        <option value="Applied">
+                            Applied
+                        </option>
+
+                        <option value="Screening">
+                            Screening
+                        </option>
+
+                        <option value="Interview">
+                            Interview
+                        </option>
+
+                        <option value="Offer">
+                            Offer
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editDate">
+                        Application Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="editDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editFollowUpDate">
+                        Follow-up Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="editFollowUpDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editJobUrl">
+                        Job URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="editJobUrl"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editNotes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="editNotes"
+                        rows="4"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="js/applications.js"></script>
+    <script src="js/theme.js"></script>
+
+</body>
+
+</html>
