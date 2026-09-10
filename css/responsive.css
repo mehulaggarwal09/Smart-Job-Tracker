@@ -88,3 +88,158 @@
     }
 
 }
+/* =========================
+   MOBILE HAMBURGER MENU
+========================= */
+
+.mobile-menu-btn {
+    display: none;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 250px;
+        height: 100vh;
+
+        padding: 25px 18px;
+
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+
+        z-index: 1100;
+
+        overflow-y: auto;
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .sidebar-nav {
+        flex-direction: column;
+        overflow: visible;
+        gap: 8px;
+    }
+
+    .nav-item {
+        width: 100%;
+        white-space: normal;
+    }
+
+
+    /* Main content */
+    .main-content {
+        margin-left: 0;
+        padding: 75px 18px 20px;
+    }
+
+
+    /* Hamburger */
+    .mobile-menu-btn {
+        display: flex;
+
+        position: fixed;
+        top: 15px;
+        left: 15px;
+
+        width: 44px;
+        height: 44px;
+
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+        border-radius: 10px;
+
+        background-color: #111827;
+        color: white;
+
+        font-size: 22px;
+
+        cursor: pointer;
+
+        z-index: 1200;
+
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-menu-btn:hover {
+        background-color: #374151;
+    }
+
+
+    /* Overlay */
+    .sidebar-overlay {
+        display: block;
+
+        position: fixed;
+        inset: 0;
+
+        background-color: rgba(0, 0, 0, 0.45);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: opacity 0.3s ease;
+
+        z-index: 1050;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    /* Topbar */
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .topbar .theme-toggle,
+    .topbar .primary-btn {
+        width: 100%;
+    }
+
+
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================
+   MOBILE DARK MODE
+========================= */
+
+@media (max-width: 600px) {
+
+    body.dark-mode .mobile-menu-btn {
+        background-color: #f9fafb;
+        color: #111827;
+    }
+
+    body.dark-mode .mobile-menu-btn:hover {
+        background-color: #e5e7eb;
+    }
+
+}

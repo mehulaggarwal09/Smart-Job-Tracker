@@ -1198,3 +1198,21 @@ body.dark-mode .stat-card p {
 body.dark-mode .section-header h2 {
     color: #f9fafb;
 }
+
+/* =========================
+   MOBILE MENU BUTTON
+========================= */
+
+.mobile-menu-btn {
+    font-family: Arial, sans-serif;
+}
+
+
+/* Prevent page scroll when sidebar is open */
+@media (max-width: 600px) {
+
+    body:has(.sidebar.mobile-open) {
+        overflow: hidden;
+    }
+
+}
