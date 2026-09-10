@@ -1,5 +1,7 @@
 # Smart Job Tracker
 
+[🚀 Live Demo](https://mehulaggarwal09.github.io/Smart-Job-Tracker/) | [💻 GitHub Repository](https://mehulaggarwal09.github.io/Smart-Job-Tracker/)
+
 A responsive Job Application Tracking System built with HTML, CSS, and JavaScript.
 
 Smart Job Tracker helps users manage job applications, track application status, schedule follow-ups, and analyze their job search progress from a single dashboard.
