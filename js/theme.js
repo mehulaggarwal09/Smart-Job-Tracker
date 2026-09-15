@@ -1,30 +1,59 @@
 // =========================
-// THEME TOGGLE
+// THEME MANAGEMENT
 // =========================
 
 const themeToggle = document.getElementById("themeToggle");
+
+
+// =========================
+// LOAD SAVED THEME
+// =========================
+
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme === "dark") {
+
     document.body.classList.add("dark-mode");
 
     if (themeToggle) {
         themeToggle.textContent = "☀️ Light Mode";
     }
+
+} else {
+
+    if (themeToggle) {
+        themeToggle.textContent = "🌙 Dark Mode";
+    }
+
 }
 
+
+// =========================
+// TOGGLE THEME
+// =========================
+
 if (themeToggle) {
+
     themeToggle.addEventListener("click", function () {
+
         document.body.classList.toggle("dark-mode");
 
         if (document.body.classList.contains("dark-mode")) {
+
             themeToggle.textContent = "☀️ Light Mode";
+
             localStorage.setItem("theme", "dark");
+
         } else {
+
             themeToggle.textContent = "🌙 Dark Mode";
+
             localStorage.setItem("theme", "light");
+
         }
+
     });
+
 }
 
 
@@ -36,60 +65,111 @@ const sidebar = document.querySelector(".sidebar");
 
 if (sidebar) {
 
-    // Create hamburger button
-    const menuButton = document.createElement("button");
+    // Prevent duplicate menu button
+    let menuButton = document.querySelector(".mobile-menu-btn");
 
-    menuButton.className = "mobile-menu-btn";
-    menuButton.id = "mobileMenuBtn";
-    menuButton.setAttribute("aria-label", "Open navigation menu");
-    menuButton.innerHTML = "☰";
+    if (!menuButton) {
 
-    document.body.appendChild(menuButton);
+        menuButton = document.createElement("button");
 
+        menuButton.className = "mobile-menu-btn";
+        menuButton.id = "mobileMenuBtn";
 
-    // Create overlay
-    const overlay = document.createElement("div");
-
-    overlay.className = "sidebar-overlay";
-    overlay.id = "sidebarOverlay";
-
-    document.body.appendChild(overlay);
-
-
-    // Open menu
-    menuButton.addEventListener("click", function () {
-
-        sidebar.classList.add("mobile-open");
-        overlay.classList.add("active");
-
-        menuButton.innerHTML = "✕";
-        menuButton.setAttribute("aria-label", "Close navigation menu");
-    });
-
-
-    // Close menu
-    function closeMobileMenu() {
-
-        sidebar.classList.remove("mobile-open");
-        overlay.classList.remove("active");
+        menuButton.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
 
         menuButton.innerHTML = "☰";
-        menuButton.setAttribute("aria-label", "Open navigation menu");
+
+        document.body.appendChild(menuButton);
+
     }
 
 
-    overlay.addEventListener("click", closeMobileMenu);
+    // =========================
+    // CREATE OVERLAY
+    // =========================
+
+    let overlay = document.querySelector(".sidebar-overlay");
+
+    if (!overlay) {
+
+        overlay = document.createElement("div");
+
+        overlay.className = "sidebar-overlay";
+        overlay.id = "sidebarOverlay";
+
+        document.body.appendChild(overlay);
+
+    }
 
 
-    // Close menu after clicking navigation item
-    const navItems = sidebar.querySelectorAll(".nav-item");
+    // =========================
+    // OPEN MENU
+    // =========================
 
-    navItems.forEach(function (item) {
+    menuButton.addEventListener("click", function () {
 
-        item.addEventListener("click", function () {
+        sidebar.classList.add("active");
 
-            if (window.innerWidth <= 600) {
+        overlay.classList.add("active");
+
+        menuButton.innerHTML = "✕";
+
+        menuButton.setAttribute(
+            "aria-label",
+            "Close navigation menu"
+        );
+
+    });
+
+
+    // =========================
+    // CLOSE MENU
+    // =========================
+
+    function closeMobileMenu() {
+
+        sidebar.classList.remove("active");
+
+        overlay.classList.remove("active");
+
+        menuButton.innerHTML = "☰";
+
+        menuButton.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
+
+    }
+
+
+    // =========================
+    // CLOSE ON OVERLAY CLICK
+    // =========================
+
+    overlay.addEventListener("click", function () {
+
+        closeMobileMenu();
+
+    });
+
+
+    // =========================
+    // CLOSE AFTER NAVIGATION
+    // =========================
+
+    const navLinks = sidebar.querySelectorAll("a");
+
+    navLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            if (window.innerWidth <= 768) {
+
                 closeMobileMenu();
+
             }
 
         });
@@ -97,11 +177,16 @@ if (sidebar) {
     });
 
 
-    // Reset mobile menu on desktop resize
+    // =========================
+    // HANDLE WINDOW RESIZE
+    // =========================
+
     window.addEventListener("resize", function () {
 
-        if (window.innerWidth > 600) {
+        if (window.innerWidth > 768) {
+
             closeMobileMenu();
+
         }
 
     });

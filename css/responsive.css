@@ -1,245 +1,258 @@
-/* Tablet */
-@media (max-width: 900px) {
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
 
-    .sidebar {
-        width: 200px;
-    }
+/* Tablet */
+@media (max-width: 1100px) {
 
     .main-content {
-        margin-left: 200px;
-        padding: 25px;
+        padding: 20px;
     }
 
-    .stats-container {
+    .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-}
-
-
-/* Mobile */
-@media (max-width: 600px) {
-
-    .sidebar {
-        position: static;
-
-        width: 100%;
-        height: auto;
-
-        padding: 20px;
-    }
-
-    .logo {
-        margin-bottom: 20px;
-    }
-
-    .sidebar-nav {
-        flex-direction: row;
-
+    .kanban-board {
+        grid-template-columns: repeat(5, 220px);
         overflow-x: auto;
-
-        gap: 8px;
     }
 
-    .nav-item {
-        white-space: nowrap;
+    .kanban-column {
+        min-width: 220px;
     }
-
-    .main-content {
-        margin-left: 0;
-
-        padding: 20px;
-    }
-
-    .topbar {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 20px;
-    }
-
-    .add-job-btn {
-        width: 100%;
-    }
-
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* Applications Mobile */
-
-@media (max-width: 600px) {
-
-    .applications-toolbar {
-        flex-direction: column;
-    }
-
-    .applications-toolbar input,
-    .applications-toolbar select {
-        width: 100%;
-    }
-
-    .application-details {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-}
-/* =========================
-   MOBILE HAMBURGER MENU
-========================= */
-
-.mobile-menu-btn {
-    display: none;
-}
-
-.sidebar-overlay {
-    display: none;
 }
 
 
-/* =========================
-   MOBILE NAVIGATION
-========================= */
+/* ================================
+   MOBILE
+================================ */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Sidebar */
     .sidebar {
         position: fixed;
         top: 0;
-        left: 0;
-
+        left: -260px;
         width: 250px;
         height: 100vh;
-
-        padding: 25px 18px;
-
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-
-        z-index: 1100;
-
-        overflow-y: auto;
+        z-index: 1000;
+        transition: left 0.3s ease;
     }
 
-    .sidebar.mobile-open {
-        transform: translateX(0);
+    .sidebar.active {
+        left: 0;
     }
 
     .sidebar-nav {
         flex-direction: column;
-        overflow: visible;
-        gap: 8px;
+        overflow-x: visible;
     }
 
     .nav-item {
         width: 100%;
-        white-space: normal;
     }
-
 
     /* Main content */
     .main-content {
+        width: 100%;
         margin-left: 0;
-        padding: 75px 18px 20px;
+        padding: 16px;
     }
 
-
-    /* Hamburger */
+    /* Mobile menu button */
     .mobile-menu-btn {
-        display: flex;
-
+        display: block;
         position: fixed;
         top: 15px;
         left: 15px;
-
-        width: 44px;
-        height: 44px;
-
-        align-items: center;
-        justify-content: center;
-
+        z-index: 1100;
         border: none;
-        border-radius: 10px;
-
         background-color: #111827;
         color: white;
-
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
         font-size: 22px;
-
         cursor: pointer;
-
-        z-index: 1200;
-
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-
-    .mobile-menu-btn:hover {
-        background-color: #374151;
-    }
-
-
-    /* Overlay */
-    .sidebar-overlay {
-        display: block;
-
-        position: fixed;
-        inset: 0;
-
-        background-color: rgba(0, 0, 0, 0.45);
-
-        opacity: 0;
-        visibility: hidden;
-
-        transition: opacity 0.3s ease;
-
-        z-index: 1050;
-    }
-
-    .sidebar-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
 
     /* Topbar */
     .topbar {
+        padding-left: 55px;
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-        margin-bottom: 25px;
     }
 
-    .topbar .theme-toggle,
-    .topbar .primary-btn {
-        width: 100%;
+    .topbar h1 {
+        font-size: 28px;
     }
 
+    .topbar p {
+        font-size: 14px;
+    }
+
+    .theme-toggle {
+        width: auto;
+    }
 
     /* Stats */
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-card p {
+        font-size: 26px;
+    }
+
+    /* Buttons */
+    .primary-btn {
+        width: 100%;
+    }
+
+    /* Applications toolbar */
+    .applications-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .applications-toolbar input,
+    .applications-toolbar select,
+    .applications-toolbar button {
+        width: 100%;
+    }
+
+    /* Application cards */
+    .application-card {
+        padding: 16px;
+    }
+
+    .application-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .application-actions {
+        flex-direction: column;
+    }
+
+    .application-actions button,
+    .view-job-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Modal */
+    .modal {
+        padding: 15px;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Follow-up cards */
+    .follow-up-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .follow-up-status {
+        white-space: normal;
+    }
+
+    /* Analytics */
+    .analytics-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-card {
+        padding: 15px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    /* Kanban */
+    .kanban-board {
+        display: grid;
+        grid-template-columns: repeat(5, 220px);
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .kanban-column {
+        min-width: 220px;
+    }
+
+    /* Settings */
+    .settings-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .settings-item button {
+        width: 100%;
+    }
 }
 
 
-/* =========================
-   MOBILE DARK MODE
-========================= */
+/* Small phones */
+@media (max-width: 480px) {
 
-@media (max-width: 600px) {
-
-    body.dark-mode .mobile-menu-btn {
-        background-color: #f9fafb;
-        color: #111827;
+    .main-content {
+        padding: 12px;
     }
 
-    body.dark-mode .mobile-menu-btn:hover {
-        background-color: #e5e7eb;
+    .topbar h1 {
+        font-size: 25px;
     }
 
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-card p {
+        font-size: 24px;
+    }
+
+    .modal-content {
+        padding: 16px;
+    }
+
+    .chart-container {
+        height: 260px;
+    }
+}
+
+
+/* Desktop: hide mobile menu */
+@media (min-width: 769px) {
+
+    .mobile-menu-btn {
+        display: none;
+    }
 }
