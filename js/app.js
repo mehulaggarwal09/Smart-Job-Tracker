@@ -30,25 +30,31 @@ const applicationForm = document.getElementById("applicationForm");
 // OPEN MODAL
 // =========================
 
-openModalBtn.addEventListener("click", function () {
-    modal.style.display = "flex";
-});
+if (openModalBtn && modal) {
+    openModalBtn.addEventListener("click", function () {
+        modal.style.display = "flex";
+    });
+}
 
 
 // =========================
 // CLOSE MODAL
 // =========================
 
-closeModalBtn.addEventListener("click", function () {
-    modal.style.display = "none";
-});
+if (closeModalBtn && modal) {
+    closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+}
 
 
-// Close when clicking outside modal
+// =========================
+// CLOSE MODAL OUTSIDE CLICK
+// =========================
 
 window.addEventListener("click", function (event) {
 
-    if (event.target === modal) {
+    if (modal && event.target === modal) {
         modal.style.display = "none";
     }
 
@@ -59,121 +65,137 @@ window.addEventListener("click", function (event) {
 // ADD APPLICATION
 // =========================
 
-applicationForm.addEventListener("submit", function (event) {
+if (applicationForm) {
 
-    event.preventDefault();
+    applicationForm.addEventListener("submit", function (event) {
 
-    const applications = getApplications();
+        event.preventDefault();
 
-
-    // Get form values
-
-    const company =
-        document.getElementById("company").value.trim();
-
-    const role =
-        document.getElementById("role").value.trim();
-
-    const location =
-        document.getElementById("location").value.trim();
-
-    const salary =
-        document.getElementById("salary").value.trim();
-
-    const status =
-        document.getElementById("status").value;
-
-    const date =
-        document.getElementById("date").value;
-
-    const followUpDate =
-        document.getElementById("followUpDate").value;
-
-    const jobUrl =
-        document.getElementById("jobUrl").value.trim();
-
-    const notes =
-        document.getElementById("notes").value.trim();
+        const applications = getApplications();
 
 
-    // =========================
-    // DUPLICATE CHECK
-    // =========================
+        // =========================
+        // GET FORM VALUES
+        // =========================
 
-    const duplicateApplication = applications.find(
-        application =>
-            application.company.toLowerCase() === company.toLowerCase() &&
-            application.role.toLowerCase() === role.toLowerCase()
-    );
+        const company =
+            document.getElementById("company").value.trim();
+
+        const role =
+            document.getElementById("role").value.trim();
+
+        const location =
+            document.getElementById("location").value.trim();
+
+        const salary =
+            document.getElementById("salary").value.trim();
+
+        const status =
+            document.getElementById("status").value;
+
+        const date =
+            document.getElementById("date").value;
+
+        const followUpDate =
+            document.getElementById("followUpDate").value;
+
+        const jobUrl =
+            document.getElementById("jobUrl").value.trim();
+
+        const notes =
+            document.getElementById("notes").value.trim();
 
 
-    if (duplicateApplication) {
+        // =========================
+        // DUPLICATE CHECK
+        // =========================
 
-        const confirmDuplicate = confirm(
-            `You already have an application for ${company} - ${role}.\n\nDo you want to add it anyway?`
+        const duplicateApplication = applications.find(
+            application =>
+                application.company.toLowerCase() === company.toLowerCase() &&
+                application.role.toLowerCase() === role.toLowerCase()
         );
 
 
-        if (!confirmDuplicate) {
-            return;
+        if (duplicateApplication) {
+
+            const confirmDuplicate = confirm(
+                `You already have an application for ${company} - ${role}.\n\nDo you want to add it anyway?`
+            );
+
+
+            if (!confirmDuplicate) {
+                return;
+            }
+
         }
 
-    }
+
+        // =========================
+        // CREATE APPLICATION
+        // =========================
+
+        const newApplication = {
+
+            id: Date.now(),
+
+            company: company,
+
+            role: role,
+
+            location: location,
+
+            salary: salary,
+
+            status: status,
+
+            date: date,
+
+            followUpDate: followUpDate,
+
+            jobUrl: jobUrl,
+
+            notes: notes
+
+        };
 
 
-    // =========================
-    // CREATE APPLICATION
-    // =========================
+        // =========================
+        // SAVE APPLICATION
+        // =========================
 
-    const newApplication = {
+        applications.push(newApplication);
 
-        id: Date.now(),
-
-        company: company,
-
-        role: role,
-
-        location: location,
-
-        salary: salary,
-
-        status: status,
-
-        date: date,
-
-        followUpDate: followUpDate,
-
-        jobUrl: jobUrl,
-
-        notes: notes
-
-    };
+        saveApplications(applications);
 
 
-    // Save application
+        // =========================
+        // RESET FORM
+        // =========================
 
-    applications.push(newApplication);
-
-    saveApplications(applications);
-
-
-    // Reset form
-
-    applicationForm.reset();
+        applicationForm.reset();
 
 
-    // Close modal
+        // =========================
+        // CLOSE MODAL
+        // =========================
 
-    modal.style.display = "none";
+        if (modal) {
+            modal.style.display = "none";
+        }
 
 
-    // Update dashboard
+        // =========================
+        // UPDATE DASHBOARD
+        // =========================
 
-    updateDashboard();
+        updateDashboard();
 
-    displayFollowUps();
+        displayFollowUps();
 
-});
+    });
+
+}
 
 
 // =========================
@@ -234,36 +256,63 @@ function updateDashboard() {
             : 0;
 
 
-    // Update dashboard
+    // =========================
+    // UPDATE DASHBOARD
+    // =========================
 
-    document.getElementById(
-        "totalApplications"
-    ).textContent = totalApplications;
+    const totalApplicationsElement =
+        document.getElementById("totalApplications");
 
+    const totalInterviewsElement =
+        document.getElementById("totalInterviews");
 
-    document.getElementById(
-        "totalInterviews"
-    ).textContent = totalInterviews;
+    const totalOffersElement =
+        document.getElementById("totalOffers");
 
+    const totalRejectedElement =
+        document.getElementById("totalRejected");
 
-    document.getElementById(
-        "totalOffers"
-    ).textContent = totalOffers;
+    const responseRateElement =
+        document.getElementById("responseRate");
 
-
-    document.getElementById(
-        "totalRejected"
-    ).textContent = totalRejected;
-
-
-    document.getElementById(
-        "responseRate"
-    ).textContent = `${responseRate}%`;
+    const interviewRateElement =
+        document.getElementById("interviewRate");
 
 
-    document.getElementById(
-        "interviewRate"
-    ).textContent = `${interviewRate}%`;
+    if (totalApplicationsElement) {
+        totalApplicationsElement.textContent =
+            totalApplications;
+    }
+
+
+    if (totalInterviewsElement) {
+        totalInterviewsElement.textContent =
+            totalInterviews;
+    }
+
+
+    if (totalOffersElement) {
+        totalOffersElement.textContent =
+            totalOffers;
+    }
+
+
+    if (totalRejectedElement) {
+        totalRejectedElement.textContent =
+            totalRejected;
+    }
+
+
+    if (responseRateElement) {
+        responseRateElement.textContent =
+            `${responseRate}%`;
+    }
+
+
+    if (interviewRateElement) {
+        interviewRateElement.textContent =
+            `${interviewRate}%`;
+    }
 
 }
 
@@ -331,6 +380,10 @@ function displayFollowUps() {
         );
 
 
+    // =========================
+    // NO FOLLOW-UPS
+    // =========================
+
     if (followUps.length === 0) {
 
         container.innerHTML = `
@@ -343,8 +396,16 @@ function displayFollowUps() {
     }
 
 
+    // =========================
+    // CLEAR CONTAINER
+    // =========================
+
     container.innerHTML = "";
 
+
+    // =========================
+    // DISPLAY FOLLOW-UPS
+    // =========================
 
     followUps.forEach(application => {
 
@@ -352,6 +413,10 @@ function displayFollowUps() {
 
         let reminderText = "";
 
+
+        // =========================
+        // OVERDUE
+        // =========================
 
         if (application.daysDifference < 0) {
 
@@ -369,6 +434,11 @@ function displayFollowUps() {
 
         }
 
+
+        // =========================
+        // TODAY
+        // =========================
+
         else if (
             application.daysDifference === 0
         ) {
@@ -380,6 +450,11 @@ function displayFollowUps() {
 
         }
 
+
+        // =========================
+        // UPCOMING
+        // =========================
+
         else {
 
             reminderClass = "upcoming";
@@ -390,6 +465,10 @@ function displayFollowUps() {
 
         }
 
+
+        // =========================
+        // CREATE FOLLOW-UP CARD
+        // =========================
 
         const reminder =
             document.createElement("div");
@@ -442,49 +521,3 @@ function displayFollowUps() {
 updateDashboard();
 
 displayFollowUps();
-
-// =========================
-// DARK / LIGHT MODE
-// =========================
-
-const themeToggle = document.getElementById("themeToggle");
-
-if (themeToggle) {
-
-    themeToggle.addEventListener("click", function () {
-
-        document.body.classList.toggle("dark-mode");
-
-        if (document.body.classList.contains("dark-mode")) {
-
-            themeToggle.textContent = "☀️ Light Mode";
-
-            localStorage.setItem("theme", "dark");
-
-        } else {
-
-            themeToggle.textContent = "🌙 Dark Mode";
-
-            localStorage.setItem("theme", "light");
-
-        }
-
-    });
-
-
-    // Load saved theme
-
-    const savedTheme =
-        localStorage.getItem("theme");
-
-
-    if (savedTheme === "dark") {
-
-        document.body.classList.add("dark-mode");
-
-        themeToggle.textContent =
-            "☀️ Light Mode";
-
-    }
-
-}
